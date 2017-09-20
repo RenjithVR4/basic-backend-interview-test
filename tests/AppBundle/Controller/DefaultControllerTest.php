@@ -1,18 +1,20 @@
-<?php
+<?php 
 
-namespace Tests\AppBundle\Controller;
+namespace test\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
+use AppBundle\Controller\DefaultController;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class NeoControllerTest extends KernelTestCase
 {
-    public function testIndex()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
-    }
+	public function testrootMessage()
+	{
+		$default_controller = new DefaultController();
+		$result = $default_controller->indexAction();
+		$expected = array("hello" => "world");
+		$this->assertEquals($expected, $result);
+	}
 }

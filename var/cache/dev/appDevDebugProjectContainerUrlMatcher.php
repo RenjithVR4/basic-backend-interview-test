@@ -117,11 +117,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
-        // getdata
-        if ('/getdata' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\NeoController::manipulateData',  '_route' => 'getdata',);
-        }
-
         if (0 === strpos($pathinfo, '/neo')) {
             // hazardous
             if ('/neo/hazardous' === $trimmedPathinfo) {

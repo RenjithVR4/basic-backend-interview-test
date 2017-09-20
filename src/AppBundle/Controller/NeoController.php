@@ -14,82 +14,17 @@ use Datetime;
 
 class NeoController extends Controller
 {
-    public function getData()
-    {
-        date_default_timezone_set("Europe/Berlin");
-
-        $api_key = "N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD";
-        $three_days_prev = date("Y-m-d", strtotime("-3 days"));
-        $yesterday = date("Y-m-d", strtotime("-1 days"));
-
-        $service_url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=".$three_days_prev."&end_date=".$yesterday."&detailed=true&api_key=".$api_key;  
-
-        $curl            = curl_init($service_url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        $curl_response   = curl_exec($curl);
-        curl_close($curl);
-
-        $return_result = json_decode($curl_response, true);
-
-        return $return_result;
-    }
-
-    /**
-    * @Route("/getdata", name="getdata") Just used to get and insert data!
-    */
-    public function manipulateData(Request $request)
-    {
-        $data = self::getData();
-        $return_result = array();       
-
-        if($data)
-        {
-		$near_earth_objects =  $data['near_earth_objects'];
-
-		$return_result['near_earth_objects_count'] =  count($near_earth_objects);
-
-		$i = 0;
-
-		foreach($near_earth_objects as $keys => $objects)
-		{
-			$date = $keys;
-			foreach($objects as $key => $value)
-			{
-				$neo = new NeoData;
-				$neo->setReference($value['neo_reference_id']); 
-				$neo->setName(trim($value['name']));
-				$neo->setIsHazardous($value['is_potentially_hazardous_asteroid']); //it's boolean
-				$neo->setDate(new \DateTime($date));
-				foreach($value['close_approach_data'] as $val)
-				{
-					$neo->setSpeed($val['relative_velocity']['kilometers_per_hour']);
-				}
-		
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($neo);
-
-				$i++;
-			}
-		}
-
-		$em->flush();
-        }
-
-        return $return_result; 
-    }
-
      /**
      * @Route("/neo/hazardous/", name="hazardous")
      */
      public function getHazardousAsteroid(Request $request)
      { 				
-
+     	$haz_value = trim($request->query->getBoolean('hazardous'));
      	$em = $this->getDoctrine()->getManager();
 
-	$hazardous_asteroids = $em->getRepository('AppBundle:NeoData')->getHazardousAsteroid();
+	$hazardous_asteroids = $em->getRepository('AppBundle:NeoData')->getHazardousAsteroid($haz_value);
 
-   	if ($hazardous_asteroids === null)
+   	if (count($hazardous_asteroids) == 0)
    	{
    		return new View("data not found", Response::HTTP_NOT_FOUND);
    	}

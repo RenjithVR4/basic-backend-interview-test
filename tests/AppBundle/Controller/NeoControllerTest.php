@@ -3,7 +3,6 @@
 namespace test\AppBundle\Controller;
 
 use PHPUnit\Framework\TestCase;
-use AppBundle\Controller\DefaultController;
 use AppBundle\Controller\NeoController;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
