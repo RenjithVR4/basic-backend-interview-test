@@ -10,13 +10,11 @@ namespace AppBundle\Repository;
  */
 class NeoDataRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function getHazardousAsteroid($bool)
+	public function getHazardousAsteroid()
 	{
         	$query =  $this->getEntityManager()
             		->createQuery("SELECT neo_data FROM 
-            				AppBundle\Entity\NeoData neo_data WHERE
-            			 	neo_data.isHazardous = :ishazardous")
-            		->setParameter('ishazardous', $bool);
+            				AppBundle\Entity\NeoData neo_data");
             		
             	return $query->getArrayResult();
     	}

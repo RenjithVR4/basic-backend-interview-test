@@ -142,7 +142,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return $this->redirect($pathinfo.'/', 'best_year');
                 }
 
-                return array (  '_controller' => 'AppBundle\\Controller\\NeoController::bestYear',  '_route' => 'best_year',);
+                return array (  '_controller' => 'AppBundle\\Controller\\NeoController::getbestYear',  '_route' => 'best_year',);
             }
 
             // best_month
@@ -151,7 +151,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return $this->redirect($pathinfo.'/', 'best_month');
                 }
 
-                return array (  '_controller' => 'AppBundle\\Controller\\NeoController::bestMonth',  '_route' => 'best_month',);
+                return array (  '_controller' => 'AppBundle\\Controller\\NeoController::getbestMonth',  '_route' => 'best_month',);
             }
 
         }

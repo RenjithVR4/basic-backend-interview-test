@@ -8,3 +8,10 @@ fac365,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505935564,9877ef,200
 93e283,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505935609,a88ade,200
 a88ade,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505935609,,500
 53ded7,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505935688,,404
+8441d7,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505936283,,200
+f79219,127.0.0.1,GET,http://localhost:8000/neo/hazardous/?hazardous=true,1505936293,,404
+91834b,127.0.0.1,GET,http://localhost:8000/neo/hazardous/?hazardous=false,1505936306,,200
+99dbb8,127.0.0.1,GET,http://localhost:8000/neo/fastest/?hazardous=false,1505938955,,200
+0d133b,127.0.0.1,GET,http://localhost:8000/neo/hazardous/,1505939146,,200
+77e3b2,127.0.0.1,GET,http://localhost:8000/neo/best-year/?hazardous=false,1505941694,,200
+271dcd,127.0.0.1,GET,http://localhost:8000/neo/best-month/?hazardous=false,1505941704,,200

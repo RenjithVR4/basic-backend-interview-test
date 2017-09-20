@@ -25,7 +25,7 @@ class FetchNasaAsteroidData extends ContainerAwareCommand
     	{
         	$em = $this->getContainer()->get('doctrine')->getEntityManager();
 
-        	date_default_timezone_set("Europe/Berlin");
+        	// date_default_timezone_set("Europe/Berlin");
 
 	        $api_key = "N7LkblDsc5aen05FJqBQ8wU4qSdmsftwJagVK7UD";
 	        $three_days_prev = date("Y-m-d", strtotime("-3 days"));

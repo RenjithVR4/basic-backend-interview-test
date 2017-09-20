@@ -476,6 +476,7 @@
       </parameter>
     </parameter>
     <parameter key="console.command.ids" type="collection">
+      <parameter key="console.command.appbundle_command_fetchnasaasteroiddata">console.command.appbundle_command_fetchnasaasteroiddata</parameter>
       <parameter key="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand">console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand</parameter>
       <parameter key="console.command.sensiolabs_security_command_securitycheckercommand">sensio_distribution.security_checker.command</parameter>
     </parameter>
@@ -483,6 +484,9 @@
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" synthetic="true"/>
     <service id="AppBundle\AppBundle" class="AppBundle\AppBundle" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\Command\FetchNasaAsteroidData" class="AppBundle\Command\FetchNasaAsteroidData" public="false" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+    </service>
     <service id="AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -505,7 +509,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-50"/>
-      <argument type="service" id="service_locator.6fa3ff229f0cdf9f8985ff38130e412b"/>
+      <argument type="service" id="service_locator.41d14eb0a0c1d7328aa2e5113ab0e857"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false">
       <tag name="controller.argument_value_resolver" priority="-100"/>
@@ -673,7 +677,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <argument>/var/www/html/tests/basic-backend-interview-test/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -683,7 +687,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -2312,12 +2316,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>59c2ad7b6bd9f0.13948759</argument>
+      <argument>59c2d59ca35930.12536923</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>59c2ad7b6bd9f0.13948759</argument>
+      <argument>59c2d59ca35930.12536923</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -3980,6 +3984,8 @@
       <tag name="console.command"/>
       <argument type="service" id="sensio_distribution.security_checker"/>
     </service>
+    <service id="instanceof.Symfony\Component\Console\Command\Command.0.AppBundle\Command\FetchNasaAsteroidData" class="AppBundle\Command\FetchNasaAsteroidData" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Command\FetchNasaAsteroidData" class="AppBundle\Command\FetchNasaAsteroidData" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\NeoController" class="AppBundle\Controller\NeoController" autowire="true" abstract="true"/>
@@ -3988,7 +3994,7 @@
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
-    <service id="service_locator.6fa3ff229f0cdf9f8985ff38130e412b" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.41d14eb0a0c1d7328aa2e5113ab0e857" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
     </service>
@@ -4211,7 +4217,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>mItIOaFiFS</argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <argument>/var/www/html/tests/basic-backend-interview-test/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4219,7 +4225,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>WT+DvuxxfX</argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <argument>/var/www/html/tests/basic-backend-interview-test/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4227,7 +4233,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>RRin0VtdrH</argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <argument>/var/www/html/tests/basic-backend-interview-test/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4235,7 +4241,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>ZQ5hIa3acJ</argument>
       <argument>0</argument>
-      <argument>ROnPxFCfg+c8C-eKHH9dZi</argument>
+      <argument>65vLXmgNpC1xUJ4oHdAlyc</argument>
       <argument>/var/www/html/tests/basic-backend-interview-test/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -4346,6 +4352,7 @@
     <service id="jms_serializer.accessor_strategy" alias="jms_serializer.accessor_strategy.expression"/>
     <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
     <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
+    <service id="console.command.appbundle_command_fetchnasaasteroiddata" alias="AppBundle\Command\FetchNasaAsteroidData"/>
     <service id="console.command.symfony_bundle_securitybundle_command_userpasswordencodercommand" alias="security.console.user_password_encoder_command"/>
     <service id="twig.loader" alias="twig.loader.filesystem"/>
     <service id="fos_rest.serializer" alias="fos_rest.serializer.jms"/>

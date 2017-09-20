@@ -19,11 +19,11 @@ class NeoController extends Controller
      */
      public function getHazardousAsteroid(Request $request)
      { 				
-     	$haz_value = trim($request->query->getBoolean('hazardous'));
      	$em = $this->getDoctrine()->getManager();
 
-	$hazardous_asteroids = $em->getRepository('AppBundle:NeoData')->getHazardousAsteroid($haz_value);
+	$hazardous_asteroids = $em->getRepository('AppBundle:NeoData')->getHazardousAsteroid();
 
+	//we can add more error cases with error codes
    	if (count($hazardous_asteroids) == 0)
    	{
    		return new View("data not found", Response::HTTP_NOT_FOUND);
@@ -44,6 +44,7 @@ class NeoController extends Controller
 
 	$fastest_asteroid = $em->getRepository('AppBundle:NeoData')->getFastestAsteroid($haz_value);
      	
+     	//we can add more error cases with error codes
      	if($fastest_asteroid === null)
    	{
    		return new View("data not found", Response::HTTP_NOT_FOUND);
@@ -56,7 +57,7 @@ class NeoController extends Controller
      /**
      * @Route("/neo/best-year/", name="best_year")
      */
-     public function bestYear(Request $request)
+     public function getbestYear(Request $request)
      {
      	$haz_value = $request->query->getBoolean('hazardous');
 
@@ -64,10 +65,13 @@ class NeoController extends Controller
 
 	$best_years = $em->getRepository('AppBundle:NeoData')->getAsteroidYears($haz_value);
 
+	//we can add more error cases with error codes
      	if($best_years === null)
    	{
    		return new View("data not found", Response::HTTP_NOT_FOUND);
    	}
+
+   	//I think, we can do it on the controller to get best year, instead on the SQL. 
 
    	$years = array();
    	foreach($best_years as $year)
@@ -86,7 +90,7 @@ class NeoController extends Controller
       /**
      * @Route("/neo/best-month/", name="best_month")
      */
-     public function bestMonth(Request $request)
+     public function getbestMonth(Request $request)
      {
      	$haz_value = $request->query->getBoolean('hazardous');
 
@@ -94,6 +98,7 @@ class NeoController extends Controller
 
 	$best_months = $em->getRepository('AppBundle:NeoData')->getAsteroidMonths($haz_value);
 
+	//we can add more error cases with error codes
      	if($best_months === null)
    	{
    		return new View("data not found", Response::HTTP_NOT_FOUND);
@@ -107,7 +112,7 @@ class NeoController extends Controller
 
    	$month_count_values = array_count_values($months); 
    	$max_asteroid_month = array_search(max($month_count_values), $month_count_values);
-
+   	
    	$bestmonth = DateTime::createFromFormat('!m', $max_asteroid_month);
 
    	return $bestmonth->format('F');
